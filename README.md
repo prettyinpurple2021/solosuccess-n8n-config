@@ -1,0 +1,1 @@
+# solosuccess-n8n-config
