@@ -1,20 +1,64 @@
-# fly.toml app configuration file generated for solosuccess-n8n-config on 2025-09-13T13:23:46Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+app = "solosuccess-n8n-config"
+primary_region = "atl"
 
-app = 'solosuccess-n8n-config'
-primary_region = 'iad'
+[build]
+  image = "n8nio/n8n:latest"
 
-[http_service]
-  internal_port = 5678
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+  [http_service]
+    internal_port = 5678
+      force_https = true
+        auto_stop_machines = false
+          auto_start_machines = true
+            min_machines_running = 1
 
-[[vm]]
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 256
+            [[vm]]
+              cpu_kind = "shared"
+                cpus = 1
+                  memory_mb = 256
+
+                  [mounts]
+                    source="n8n_data"
+                      destination="/home/node/.n8n"
+                      app = "solosuccess-n8n-config"
+                      primary_region = "atl"
+
+                      [build]
+                        image = "n8nio/n8n:latest"
+
+                        [http_service]
+                          internal_port = 5678
+                            force_https = true
+                              auto_stop_machines = false
+                                auto_start_machines = true
+                                  min_machines_running = 1
+
+                                  [[vm]]
+                                    cpu_kind = "shared"
+                                      cpus = 1
+                                        memory_mb = 256
+
+                                        [mounts]
+                                          source="n8n_data"
+                                            destination="/home/node/.n8n"
+                                            app = "solosuccess-n8n-config"
+                                            primary_region = "atl"
+
+                                            [build]
+                                              image = "n8nio/n8n:latest"
+
+                                              [http_service]
+                                                internal_port = 5678
+                                                  force_https = true
+                                                    auto_stop_machines = false
+                                                      auto_start_machines = true
+                                                        min_machines_running = 1
+
+                                                        [[vm]]
+                                                          cpu_kind = "shared"
+                                                            cpus = 1
+                                                              memory_mb = 256
+
+                                                              [mounts]
+                                                                source="n8n_data"
+                                                                  destination="/home/node/.n8n"
+                                                                  
